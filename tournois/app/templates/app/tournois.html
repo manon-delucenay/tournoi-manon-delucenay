@@ -1,0 +1,16 @@
+{%load static%}
+<h1>Liste des tournois</h1>
+{% if tournois%}
+<ul>
+    {%for tournoi in tournois%}
+    <li><a href="{{tournoi.id}}/">{{tournoi.name}}</a></li>
+        {%if tournoi.place%}
+        <p>Location : {{tournoi.place}}</p>
+        {%endif%}
+        {%if tournoi.start_date and tournoi.end_date%}
+        <p>Date : {{tournoi.start_date}} to {{tournoi.end_date}}</p>
+        {%endif%}
+    {%endfor%}
+{%else%}
+    <p>No tournament</p>
+{%endif%}

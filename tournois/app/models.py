@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Players(models.Model):
     name = models.CharField(max_length=150)
@@ -38,7 +36,7 @@ class Pool(models.Model):
     teams = models.ManyToManyField(Team)
 
     def __str__(self):
-        return "Poule " + self.nb + " of " + self.tournament
+        return str(str("Poule ") + str(self.nb) + str(" of ") + str(self.tournament))
 
 
 class Match(models.Model):
