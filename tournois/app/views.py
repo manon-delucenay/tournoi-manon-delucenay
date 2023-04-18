@@ -15,9 +15,11 @@ def tournoi(request, tournoi_id):
 
 def poule(request, poule_id):
     poule = get_object_or_404(Pool,id=poule_id)
+    classement = poule.classement
     matchs = Match.objects.filter(pool = poule)
     tournoi = poule.tournament
-    return render(request, "app/poule.html",{"poule": poule, "matchs": matchs, "tournoi": tournoi})
+    context = {"poule": poule,"classement" : classement, "matchs": matchs, "tournoi": tournoi}
+    return render(request, "app/poule.html", context)
 
 def match(request, match_id):
     match = get_object_or_404(Match, id=match_id)

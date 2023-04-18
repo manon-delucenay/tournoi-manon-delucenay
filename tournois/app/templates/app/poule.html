@@ -1,0 +1,22 @@
+{% load static%}
+<h1>{{tournoi.name}}</h1>
+<h2>{{poule}}</h2>
+<h3> Teams ranked</h3>
+<ol>
+{%for equipe, score in classement.items %}
+    <li>{{equipe.name}} with {{score}} pool points</li>
+{%endfor%}
+</ol>
+
+<h3> Matchs  </h3>
+{%if matchs%}
+    {%for match in matchs%}
+    <h4><a href="{%url 'app:match' match.id%}"> {{match.display}} </a></h4>
+        {%if match.time%}
+            <p>On {{match.time}}</p>
+        {%endif%}
+        {%if match.place%}
+            <p>Location : {{match.place}}</p>
+        {%endif%}
+    {%endfor%} 
+{%endif%}
