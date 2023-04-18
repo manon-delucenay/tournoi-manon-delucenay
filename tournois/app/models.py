@@ -36,7 +36,14 @@ class Pool(models.Model):
     teams = models.ManyToManyField(Team)
 
     def __str__(self):
-        return str(str("Poule ") + str(self.nb) + str(" of ") + str(self.tournament))
+        return str(str("Poule ") + str(self.nb))
+
+    def match(self):
+        matchs = []
+        for i in range(len(self.teams.all())):
+            for j in range(i, len(self.teams.all())):
+                if j!=i: matchs.append((self.teams.all()[i], self.teams()[j]))
+        return matchs
 
 
 class Match(models.Model):

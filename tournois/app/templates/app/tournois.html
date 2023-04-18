@@ -3,7 +3,7 @@
 {% if tournois%}
 <ul>
     {%for tournoi in tournois%}
-    <li><a href="{{tournoi.id}}/">{{tournoi.name}}</a></li>
+    <li><a href="tournoi/id={{tournoi.id}}/">{{tournoi.name}}</a></li>
         {%if tournoi.place%}
         <p>Location : {{tournoi.place}}</p>
         {%endif%}

@@ -2,7 +2,7 @@
 <h1>{{tournoi.name}}</h1>
 
 {%for poule in poules%}
-<h3><a href="{{poule.id}}/">Poule {{poule.nb}}</a></h3>
+<h3><a href="{%url 'app:poule' poule.id%}">Poule {{poule.nb}}</a></h3>
 <ul>
     {% for team in poule.teams.all%}
     <li>{{team.name}}</li>
