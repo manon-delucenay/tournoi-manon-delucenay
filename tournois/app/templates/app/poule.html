@@ -1,4 +1,7 @@
 {% load static%}
+{%if request.user.is_authenticated%}
+    <a href="{%url 'logout'%}"> logout </a>
+{%endif%}
 <h1>{{tournoi.name}}</h1>
 <h2>{{poule}}</h2>
 <h3> Teams ranked</h3>

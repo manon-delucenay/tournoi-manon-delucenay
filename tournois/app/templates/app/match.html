@@ -1,6 +1,10 @@
 {% load static%}
-
-<h3>{{match.display}}</h3>
+{%if request.user.is_authenticated%}
+    <a href="{%url 'logout'%}"> logout </a>
+{%endif%}
+<h1> {{match.pool.tournament}} </h1>
+<h2> {{match.pool}}
+<h3>Match : {{match.display}}</h3>
         {%if match.time%}
             <p>On {{match.time}}</p>
         {%endif%}
@@ -9,4 +13,8 @@
         {%endif%}
 
 <h4> Comments </h4>
-<p> Please <a href="{%url 'login'%}"> login </a> to comment </p>
+{%if request.user.is_authenticated%}
+    <p>Comment</p>
+{%else%}
+    <p> Please <a href="{%url 'login'%}"> login </a> to comment </p>
+{%endif%}

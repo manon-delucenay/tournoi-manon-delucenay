@@ -1,4 +1,9 @@
 {%load static%}
+{%if request.user.is_authenticated%}
+    <p>You are connected - <a href="{%url 'logout'%}"> logout </a></p>
+{%else%}
+    <p>You are disconnected - <a href="{%url 'login'%}"> login </a></p>
+{%endif%}
 <h1>Liste des tournois</h1>
 {% if tournois%}
 <ul>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from .models import Players, Team, Tournament, Pool, Match
 
 
@@ -21,6 +21,7 @@ def poule(request, poule_id):
     context = {"poule": poule,"classement" : classement, "matchs": matchs, "tournoi": tournoi}
     return render(request, "app/poule.html", context)
 
+@login_required
 def match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     return render(request, "app/match.html", {"match":match})
