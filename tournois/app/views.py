@@ -46,7 +46,7 @@ def commentaire(request, match_id):
         nv_comm.author = request.user
         nv_comm.match = match
         nv_comm.save()
-        return redirect("app:match", {"match" : match})
+        return redirect("app:match", match_id=match_id)
     return render(request, "app/nv_comm.html", {"form": nv_comm, "match": match, "commentaires": commentaires})
 
 def mod_commentaire(request, match_id, commentaire_id):
@@ -58,5 +58,5 @@ def mod_commentaire(request, match_id, commentaire_id):
     elif request.method == "POST":
         form = CommentForm(request.POST,instance=comm)
         form.save()
-        return redirect("app:match", {"match" : match})
+        return redirect("app:match", match_id=match_id)
     return render(request, "app/modif_comm.html", {"form" : form,  "match": match, "commentaires": commentaires, "comm":comm})
