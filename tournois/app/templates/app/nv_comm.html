@@ -13,12 +13,6 @@
         {%endif%}
 
 <h4> Comments </h4>
-{%if request.user.is_authenticated%}
-    <p><a href="{%url 'app:nv_comm' match.id%}"> Add a comment</a></p>
-{%else%}
-    <p> Please <a href="{%url 'login'%}"> login </a> to comment </p>
-{%endif%}
-
 {%if commentaires%}
     {%for commentaire in commentaires%}
     <p> {{commentaire.author.username}} </p>
@@ -29,3 +23,9 @@
 {%else%}
     <p> No comments yet. </p>
 {%endif%}
+
+<form method="post" action="{% url 'app:match' match.id %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Publish">
+</form>

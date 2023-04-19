@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Players(models.Model):
     name = models.CharField(max_length=150)
@@ -44,7 +44,7 @@ class Pool(models.Model):
             for j in range(i, len(self.teams.all())):
                 if j != i:
                     match = Match(pool=self)
-                    match.teams=(self.teams.all()[i], self.teams.all()[j])
+                    match.teams.set(self.teams.all()[i], self.teams.all()[j])
                     matchs.append(match)
         return matchs
 
@@ -78,3 +78,9 @@ class Match(models.Model):
     
     def display(self):
         return str(self.score1) + " - " + str(self.teams.all()[0]) + " VS " + str(self.teams.all()[1]) + " - " + str(self.score2)
+
+class Comments(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now=True)
+    content = models.CharField(max_length=2000)
