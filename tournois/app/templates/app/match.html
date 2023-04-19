@@ -21,9 +21,8 @@
 
 {%if commentaires%}
     {%for commentaire in commentaires%}
-    <p> {{commentaire.author.username}} </p>
-    <p> {{commentaire.content}} 
-
+    <p> {{commentaire.author.username}} : {{commentaire.content}}
+        
     </p>
     {%endfor%}
 {%else%}

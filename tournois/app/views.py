@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -41,11 +41,9 @@ def commentaire(request, match_id):
         nv_comm = NewComment()
     elif request.method == 'POST':
         nv_comm = NewComment(request.POST)
-        # comment = nv_comm.save(commit=False)
-        nv_comm.author = request.user.username
+        nv_comm = nv_comm.save(commit=False)
+        nv_comm.author = request.user
         nv_comm.match = match
-        print(nv_comm)
         nv_comm.save()
-    else:
-        nv_comm = NewComment()
+        return redirect("app:match", {"match" : match})
     return render(request, "app/nv_comm.html", {"form": nv_comm, "match": match})
