@@ -1,0 +1,12 @@
+{% load static%}
+
+<h3>{{match.display}}</h3>
+        {%if match.time%}
+            <p>On {{match.time}}</p>
+        {%endif%}
+        {%if match.place%}
+            <p>Location : {{match.place}}</p>
+        {%endif%}
+
+<h4> Comments </h4>
+<p> Please <a href="{%url 'login'%}"> login </a> to comment </p>
