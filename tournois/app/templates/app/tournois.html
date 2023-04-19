@@ -4,7 +4,7 @@
 {%else%}
     <p>You are disconnected - <a href="{%url 'login'%}"> login </a></p>
 {%endif%}
-<h1>Liste des tournois</h1>
+<h1>Tournaments</h1>
 {% if tournois%}
 <ul>
     {%for tournoi in tournois%}
@@ -17,5 +17,5 @@
         {%endif%}
     {%endfor%}
 {%else%}
-    <p>No tournament</p>
+    <p>No tournament registered</p>
 {%endif%}

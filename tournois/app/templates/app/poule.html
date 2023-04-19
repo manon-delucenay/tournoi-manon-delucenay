@@ -4,6 +4,7 @@
 {%endif%}
 <h1>{{tournoi.name}}</h1>
 <h2>{{poule}}</h2>
+<p>Back to<a href="{%url "app:tournoi" tournoi.id%}"> tournament page</a> or <a href="{%url "home"%}">home page</a></p>
 <h3> Teams ranked</h3>
 <ol>
 {%for equipe, score in classement.items %}

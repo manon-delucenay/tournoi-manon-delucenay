@@ -20,21 +20,19 @@ def tournoi(request, tournoi_id):
 def poule(request, poule_id):
     poule = get_object_or_404(Pool, id=poule_id)
     classement = poule.classement
-    # matchs = poule.match
+    #matchs = poule.match()
     matchs = Match.objects.filter(pool=poule)
     tournoi = poule.tournament
     context = {"poule": poule, "classement": classement,
                "matchs": matchs, "tournoi": tournoi}
     return render(request, "app/poule.html", context)
 
-
-@login_required
 def match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     commentaires = Comments.objects.filter(match=match)
     return render(request, "app/match.html", {"match": match, "commentaires": commentaires})
 
-
+@login_required
 def commentaire(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     commentaires = Comments.objects.filter(match=match)
@@ -49,6 +47,7 @@ def commentaire(request, match_id):
         return redirect("app:match", match_id=match_id)
     return render(request, "app/nv_comm.html", {"form": nv_comm, "match": match, "commentaires": commentaires})
 
+@login_required
 def mod_commentaire(request, match_id, commentaire_id):
     match = get_object_or_404(Match, id=match_id)
     commentaires = Comments.objects.filter(match=match)

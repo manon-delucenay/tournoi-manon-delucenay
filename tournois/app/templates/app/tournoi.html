@@ -1,10 +1,12 @@
 {% load static%}
 {%if request.user.is_authenticated%}
     <a href="{%url 'logout'%}"> logout </a>
+{%else%}
+    <a href="{%url 'login'%}"> login </a>
 {%endif%}
 
 <h1>{{tournoi.name}}</h1>
-
+<p><a href="{%url "home"%}"> Back to home page</a> </p>
 {%for poule in poules%}
 <h3><a href="{%url 'app:poule' poule.id%}">Poule {{poule.nb}}</a></h3>
 <ul>

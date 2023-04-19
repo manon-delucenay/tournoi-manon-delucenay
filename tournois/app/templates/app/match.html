@@ -3,7 +3,8 @@
     <a href="{%url 'logout'%}"> logout </a>
 {%endif%}
 <h1> {{match.pool.tournament}} </h1>
-<h2> {{match.pool}}
+<h2> {{match.pool}} </h2>
+<p>Back to <a href="{%url "app:poule" match.pool.id%}"> Back to pool page</a>, <a href="{%url "app:tournoi" match.pool.tournament.id%}"> tournament page</a> or <a href="{%url "home"%}">home page</a></p>
 <h3>Match : {{match.display}}</h3>
         {%if match.time%}
             <p>On {{match.time}}</p>
