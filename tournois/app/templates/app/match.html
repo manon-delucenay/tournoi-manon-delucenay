@@ -21,9 +21,12 @@
 
 {%if commentaires%}
     {%for commentaire in commentaires%}
-    <p> {{commentaire.author.username}} : {{commentaire.content}}
-        
-    </p>
+    {%if request.user.is_authenticated and commentaire.author == request.user %}
+    <p> {{commentaire.author.username}} : <br> {{commentaire.content}}
+        <br> Click <a href="{%url 'app:modif_comm' match.id commentaire.id%} ">here</a> to modify your comment.</p>
+    {%else%}
+    <p> {{commentaire.author.username}} : {{commentaire.content}} </p>
+    {%endif%}
     {%endfor%}
 {%else%}
     <p> No comments yet. </p>
