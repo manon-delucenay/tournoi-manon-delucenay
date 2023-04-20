@@ -41,10 +41,12 @@ class Pool(models.Model):
     def match(self):
         matchs = []
         for i in range(len(self.teams.all())):
-            for j in range(i, len(self.teams.all())):
-                if j != i:
+            for j in range(i+1, len(self.teams.all())):
+                teams = (self.teams.all()[i],self.teams.all()[j])
+                if Match.objects.filter(teams = teams):
                     match = Match(pool=self)
-                    match.teams.set(self.teams.all()[i], self.teams.all()[j])
+                    match.teams.set((self.teams.all()[i],self.teams.all()[j]))
+                    match.save()
                     matchs.append(match)
         return matchs
 

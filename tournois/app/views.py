@@ -20,7 +20,6 @@ def tournoi(request, tournoi_id):
 def poule(request, poule_id):
     poule = get_object_or_404(Pool, id=poule_id)
     classement = poule.classement
-    #matchs = poule.match()
     matchs = Match.objects.filter(pool=poule)
     tournoi = poule.tournament
     context = {"poule": poule, "classement": classement,

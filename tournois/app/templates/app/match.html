@@ -17,7 +17,7 @@
 {%if request.user.is_authenticated%}
     <p><a href="{%url 'app:nv_comm' match.id%}"> Add a comment</a></p>
 {%else%}
-    <p> Please <a href="{%url 'login'%}"> login </a> to comment </p>
+    <p> Please <a href="{%url 'app:nv_comm' match.id%}"> login </a> to comment </p>
 {%endif%}
 
 {%if commentaires%}
